@@ -22,7 +22,7 @@ export default async function handler(req, res) {
                 user.password = newPassword
                 const userSaved = await user.save()
                 return res.status(201).json({
-                    msg: "User created",
+                    message: "User created",
                     user: userSaved
                 })
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         case "DELETE":{
             try{
                  await User.deleteMany({})
-                 return res.status(202).json({ msg: "All users were deleted" })
+                 return res.status(202).json({ message: "All users were deleted" })
 
             }catch(err){
                 return res.status(500).json({ error: err.message })
