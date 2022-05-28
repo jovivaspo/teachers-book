@@ -14,10 +14,9 @@ export default async function handler (req,res){
         case "POST":{
             try{
                 const {type,date,description,id_user} = body
-                console.log(id_user)
+             
                 const user = await User.findById(id_user)
-               console.log(user)
-               
+             
                 const newNote = new Note({
                     user:user._id,
                     type,
