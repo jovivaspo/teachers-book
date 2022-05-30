@@ -1,11 +1,16 @@
+import Button from 'components/Button'
+
 import React from 'react'
 
 const admin = () => {
+
+
+
   return (
     <>
       <div className='admin_container'>
-        <div className='user_btn'>Usuarios</div>
-        <div className='user_btn'>Eventos</div>
+        <Button text={"Ver Usuarios"} link={'/admin/users'}/>
+        <Button text={"Crear Usuarios"}/>
       </div>
       <style jsx>
         {`
@@ -15,17 +20,7 @@ const admin = () => {
           justify-content:center;
           gap:80px;
           align-items:center;
-          background-color:red;
           height:100%
-        }
-
-        .user_btn{
-          padding:1em;
-          color:#fff;
-          font-weight:bold;
-          background-color:orange;
-          border-radius:9999px;
-          cursor:pointer
         }
         `}
       </style>

@@ -1,4 +1,12 @@
-html,
+html{
+  box-sizing: border-box;
+}
+*,
+*::after,
+*::before{
+box-sizing: inherit;
+margin: 0;
+}
 body {
   padding: 0;
   margin: 0;
@@ -11,12 +19,10 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
 
 h1,
 h2,
-h3{
+h3,
+h4{
   margin: 0px;
 }

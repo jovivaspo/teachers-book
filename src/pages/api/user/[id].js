@@ -36,7 +36,7 @@ export default async function handler(req, res) {
             try {
                 const userUpdated = await User.findByIdAndUpdate(id,body)
                 return res.status(202).json({
-                    msg: "User updated",
+                    message: "User updated",
                 })
 
             } catch (err) {
