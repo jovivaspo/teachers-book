@@ -10,7 +10,7 @@ const admin = () => {
     <>
       <div className='admin_container'>
         <Button text={"Ver Usuarios"} link={'/admin/users'}/>
-        <Button text={"Crear Usuarios"}/>
+        <Button text={"Crear Usuarios"} link={'/admin/users/create'}/>
       </div>
       <style jsx>
         {`

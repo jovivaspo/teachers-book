@@ -1,22 +1,33 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 
-const Button = ({text,link}) => {
+const Button = ({text,color, heigth, width, event, link}) => {
 
   const router = useRouter()
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    if (event){
+      event()
+    }else{
+      router.push(link)
+    }
+  }
     
   return (
       <>
-        <div className='btn' onClick={()=>router.push(link)}>{text}</div>
+        <button className='btn' onClick={handleClick}>{text}</button>
         <style jsx>
         {`
         .btn{
-          padding:1em;
+          width:${width? width : "130px"};
+          height:${heigth? heigth : "36px"};
           color:#fff;
           font-weight:bold;
-          background-color:orange;
+          background-color:${color? color : "#0D0D0D"};
           border-radius:9999px;
-          cursor:pointer
+          cursor:pointer;
+          border:none;
         }
         `}
       </style>

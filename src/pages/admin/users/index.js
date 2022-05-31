@@ -23,7 +23,7 @@ const UsersPage = () => {
   return (
     <>
     {
-        users.length > 0 && <Grid items={users} type={"users"}/>
+        users?.length > 0 && <Grid items={users} type={"users"}/>
     }
     </>
   )

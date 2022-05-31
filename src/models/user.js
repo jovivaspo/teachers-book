@@ -4,18 +4,17 @@ import bcrypt from "bcryptjs/dist/bcrypt";
 const userSchema = new Schema({
     name:{
         type: String,
-        required: [true,"Name is required"],
+        required: [true,"Nombre requerido"],
     },
     email:{
         type:String,
-        required:[true,"Email is required"],
+        required:[true,"Email requerido"],
         unique: true,
         trim:true,
     },
     password:{
         type:String,
-        required:[true,"Password is required"],
-        minlength:[10,"Password must be more than 10 charecters"]
+        required:[true,"Contraseña requerida"],
     },
     school:{
         required:false,

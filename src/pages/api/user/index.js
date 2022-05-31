@@ -17,12 +17,17 @@ export default async function handler(req, res) {
         }
         case "POST": {//Register one user
             try {
+                const userToCreated = await User.find({"email":body.email})
+
+                if(userToCreated.length > 0){
+                    return res.status(400).json({error: "Correo en uso"})
+                }
                 const user = new User(body)
                 const newPassword = await user.encryptPassword(body.password)
                 user.password = newPassword
                 const userSaved = await user.save()
                 return res.status(201).json({
-                    message: "User created",
+                    message: "Usuario creado con éxito",
                     user: userSaved
                 })
 
@@ -33,7 +38,7 @@ export default async function handler(req, res) {
         case "DELETE":{
             try{
                  await User.deleteMany({})
-                 return res.status(202).json({ message: "All users were deleted" })
+                 return res.status(202).json({ message: "Todos los usuarios fueron eliminados" })
 
             }catch(err){
                 return res.status(500).json({ error: err.message })
@@ -41,7 +46,7 @@ export default async function handler(req, res) {
         }
 
         default: {
-            res.status(400).json({ msg: "Method not supported" })
+            res.status(400).json({ message: "Método no soportado" })
         }
     }
 }
