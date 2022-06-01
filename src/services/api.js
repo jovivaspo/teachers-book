@@ -4,12 +4,7 @@ const USER = `${API}/user`
 
 const NOTE = `${API}/note`
 
-const CREATE_NOTE = `${NOTE}/create`
-
-
 export {
     USER,
-    NOTE,
-    CREATE_NOTE
-
+    NOTE
 }

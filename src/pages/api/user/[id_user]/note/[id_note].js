@@ -7,14 +7,13 @@ dbConnection()
 
 export default async function handler(req, res) {
     const { query, url, method, body } = req
-    const {id} = req.query
-    //Body contiene el contenido de la nota y el id del usuario
-
+    const {id_user, id_note} = req.query
+   
     switch (method) {
-        case "GET": {
+        case "GET": { //Get one note of the user
             try {
                 
-                const note = await Note.findById(id)
+                const note = await Note.findById(id_note)
                 return res.status(200).json(note)
 
 
@@ -22,38 +21,35 @@ export default async function handler(req, res) {
                 return res.status(500).json({ error: err.message })
             }
         }
-        case "PUT":{
+        case "PUT":{ //Update one note of the user
             try{
 
-                const noteUpdated = await Note.findByIdAndUpdate(id,body)
+                const noteUpdated = await Note.findByIdAndUpdate(id_note,body)
                 return res.status(202).json({
-                    message: "Note updated"
+                    message: "Nota actualizada"
                 })
 
             }catch(err){
                 return res.status(500).json({ error: err.message })
             }
         }
-        case "DELETE": {
+        case "DELETE": { //Delete one note of the user
             try {
 
-                const note = await Note.findById(id)
-               
-                await Note.findByIdAndDelete(id)
-
-                const id_user = note.user
+              
+                await Note.findByIdAndDelete(id_note)
                 
                 const user = await User.findById(id_user)
                
 
-                const newNotes = user.notes.filter(note => note.toString() !== id)
+                const newNotes = user.notes.filter(note => note.toString() !== id_note)
                 
 
                 user.notes = newNotes
 
                 await user.save()
 
-                return res.status(200).json({message: "Note was deleted"})
+                return res.status(200).json({message: "Nota eliminada"})
 
             } catch (err) {
                 return res.status(500).json({ error: err.message })

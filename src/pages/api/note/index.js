@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     //Body contiene el contenido de la nota y el id del usuario
 
     switch (method) {
-        case "GET": {
+        case "GET": {//Get all notes
             try {
 
                 const notes = await Note.find()
@@ -22,11 +22,11 @@ export default async function handler(req, res) {
                 return res.status(500).json({ error: err.message })
             }
         }
-        case "DELETE": {
+        case "DELETE": { //Delete all notes
             try {
 
                 await Note.deleteMany({})
-                return res.status(200).json({message: "All notes were deleted"})
+                return res.status(200).json({message: "Todas las notas fueron borradas"})
 
 
             } catch (err) {
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
             }
         }
         default: {
-            res.status(400).json({ msg: "Method not supported" })
+            res.status(400).json({ msg: "Método no soportado" })
         }
     }
 

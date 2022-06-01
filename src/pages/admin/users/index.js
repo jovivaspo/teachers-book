@@ -2,6 +2,9 @@ import { helpHttp } from 'services/helpHttp'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Grid from 'components/Grid'
+import { USER } from 'services/api'
+import Title from 'components/Title'
+import Table from 'components/Table'
 
 const UsersPage = () => {
 
@@ -10,7 +13,7 @@ const UsersPage = () => {
      useEffect(()=>{
         const getUsers = async () => {
          
-            helpHttp().get('http://localhost:3000/api/user')
+            helpHttp().get(USER)
             .then(setUsers)
             .catch(err=>console.log(err))
         }
@@ -22,9 +25,8 @@ const UsersPage = () => {
 
   return (
     <>
-    {
-        users?.length > 0 && <Grid items={users} type={"users"}/>
-    }
+      <Title title={"Usuarios"}/>
+    {users?.length > 0 && <Table items={users} type={"users"} />}
     </>
   )
 }

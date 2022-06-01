@@ -15,7 +15,7 @@ export default async function handler(req, res) {
                 return res.status(500).json({ error: err.message })
             }
         }
-        case "POST": {//Register one user
+        case "POST": {//Register or create one user
             try {
                 const userToCreated = await User.find({"email":body.email})
 
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
                 return res.status(500).json({ error: err.message })
             }
         }
-        case "DELETE":{
+        case "DELETE":{ //Delete all users
             try{
                  await User.deleteMany({})
                  return res.status(202).json({ message: "Todos los usuarios fueron eliminados" })
